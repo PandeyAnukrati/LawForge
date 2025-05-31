@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./", // This is crucial for resolving paths relative to your project root
+      "paths": {
+        "@/*": ["./src/*"] // This maps @/ to your src directory
+      }
+    },
+    "include": ["src", "context/ExtractedTextContext.jsx"] // Make sure to include your source directory
+  }
