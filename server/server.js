@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
-import morgan from 'morgan'; 
+
 import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import geminiRoute from "./routes/geminiRoute.js";
@@ -16,7 +16,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 
 app.use(cors({
-  origin: 'http://localhost:7001',
+  origin: process.env.VITE_CLIENT_URL,
   credentials: true
 }));
 

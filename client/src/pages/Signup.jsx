@@ -42,11 +42,12 @@ const Signup = () => {
       // simulate a 2-second delay for testing
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      const res = await axios.post('http://localhost:3000/api/auth/register', {
+      const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/register`, {
         username: form.name,
         email: form.email,
         password: form.password,
       });
+      
 
       const { user, token } = res.data;
       login(user, token);

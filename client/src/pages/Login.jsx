@@ -34,12 +34,12 @@ const Login = () => {
       // Simulate delay for testing (2 seconds)
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      const res = await fetch('http://localhost:3000/api/auth/login', {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-
+      
       const data = await res.json();
 
       if (!res.ok) throw new Error(data.message || 'Login failed');

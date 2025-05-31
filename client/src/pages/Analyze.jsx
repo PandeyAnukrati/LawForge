@@ -24,26 +24,23 @@ const Analyze = () => {
     e.preventDefault();
     if (file) {
       setLoading(true);
-
+  
       const formData = new FormData();
       formData.append('file', file);
-
+  
       try {
-        const response = await fetch('http://localhost:3000/api/documents/extract-text', {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/documents/extract-text`, {
           method: 'POST',
           body: formData,
         });
-
+  
         if (!response.ok) {
           throw new Error('Failed to extract text');
         }
-
+  
         const data = await response.json();
         setExtractedText(data.text || 'No text extracted.');
         setIsEditing(false);
-
-       
-   
       } catch (error) {
         alert('Error extracting text: ' + error.message);
       } finally {
@@ -51,6 +48,7 @@ const Analyze = () => {
       }
     }
   };
+  
 
   const handleEdit = () => {
     if (isEditing) {

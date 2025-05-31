@@ -40,11 +40,12 @@ export default function Getreport() {
       try {
         console.log('Sending POST request to /api/gemini/generate-text');
 
-        const res = await fetch('http://localhost:3000/api/gemini/generate-text', {
+        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/gemini/generate-text`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ prompt: extractedText }),
         });
+        
 
         console.log('Response status:', res.status);
 
