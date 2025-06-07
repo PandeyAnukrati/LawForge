@@ -85,4 +85,3 @@ Once the application is running, you can:
 
 ---
 
-This README provides a comprehensive overview of your LawForge project, making it easier for others to understand, set up, and contribute to your work.
