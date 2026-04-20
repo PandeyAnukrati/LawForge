@@ -7,7 +7,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export const generateTextService = async (documentText) => {
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-pro",
+    model: "gemini-3-flash-preview",
     systemInstruction: `
 You are a senior legal analyst AI with expertise in law, legal documentation, and report generation. Your task is to analyze legal documents provided by the user and generate a detailed, structured report. The report should include the following sections as applicable:
 
@@ -49,11 +49,19 @@ Example:
 If the input is unclear or not a legal document, respond with:
 { "message": "Please provide a valid legal document for analysis." }
 
-Respond only with the JSON object and nothing else.
+Respond ONLY with the JSON object wrapped in a markdown code block:
+\`\`\`json
+{ ... }
+\`\`\`
 `,
   });
 
-  const result = await model.generateContent(documentText);
-  const response = await result.response;
-  return response.text().trim();
+  try {
+    const result = await model.generateContent(`Analyze this legal document and return the analysis in the requested JSON format:\n\n${documentText}`);
+    const response = await result.response;
+    return response.text().trim();
+  } catch (error) {
+    console.error("Gemini API Error details:", error);
+    throw error;
+  }
 };

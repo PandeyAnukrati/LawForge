@@ -16,7 +16,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 
 app.use(cors({
-  origin: process.env.VITE_CLIENT_URL,
+  origin: true,
   credentials: true
 }));
 

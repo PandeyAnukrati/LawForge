@@ -7,6 +7,7 @@ const SALT_ROUNDS = 10;
 
 // Register user
 export const register = async (req, res) => {
+  console.log('Register request received:', req.body);
   try {
     const { username, email, password } = req.body;
 
