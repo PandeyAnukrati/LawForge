@@ -34,11 +34,12 @@ const Analyze = () => {
           body: formData,
         });
   
-        if (!response.ok) {
-          throw new Error('Failed to extract text');
-        }
-  
         const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to extract text');
+        }
+
         setExtractedText(data.text || 'No text extracted.');
         setIsEditing(false);
       } catch (error) {
