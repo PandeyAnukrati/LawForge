@@ -21,7 +21,7 @@ export const generateTextController = async (req, res) => {
       res.status(200).json({ text });
     } catch (error) {
       console.error("Gemini Controller Error:", error);
-      res.status(500).json({ error: "Failed to generate content from Gemini AI" });
+      res.status(500).json({ error: error.message || "Failed to generate content from Gemini AI" });
     }
   };
   
