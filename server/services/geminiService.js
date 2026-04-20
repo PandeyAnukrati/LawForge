@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const backticks = "```";
 
 export const generateTextService = async (documentText) => {
   const model = genAI.getGenerativeModel({
@@ -50,9 +51,9 @@ If the input is unclear or not a legal document, respond with:
 { "message": "Please provide a valid legal document for analysis." }
 
 Respond ONLY with the JSON object wrapped in a markdown code block:
-\`\`\`json
+${backticks}json
 { ... }
-\`\`\`
+${backticks}
 `,
   });
 
